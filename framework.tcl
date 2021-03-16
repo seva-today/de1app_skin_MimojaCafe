@@ -23,6 +23,25 @@ proc create_settings_button { contexts x1 y1 x2 y2 font backcolor textcolor acti
 	add_de1_button $contexts $action_up   [expr ($x1 + $x2) / 2.0 ] $y1 $x2 $y2
 }
 
+# Extra buttons
+proc create_button_transparent { contexts x1 y1 x2 y2 font backcolor textcolor action variable } {
+	rounded_rectangle $contexts $x1 $y1 $x2 $y2 [rescale_x_skin 80] [theme background]
+	add_de1_variable "$contexts" $x1 $y1 -width [expr ($x2 - $x1) - 20]  -text "" -font $::font_big -fill [theme button_text_light] -anchor "nw" -justify "left" -state "hidden" -textvariable $variable
+	add_de1_button $contexts $action $x1 $y1 $x2 $y2
+}
+
+proc create_button_tiny_icon { contexts x1 y1 x2 y2 font backcolor textcolor action variable } {
+	rounded_rectangle $contexts  $x1 $y1 $x2 $y2 [rescale_x_skin 80] $backcolor
+	add_de1_variable "$contexts"  [expr ($x1 + $x2) / 2.0 ] [expr ($y1 + $y2) / 2.0 ] -width [rescale_x_skin [expr ($x2 - $x1) - 20]]  -text "" -font $::font_tiny_icon -fill [theme button_text_light] -anchor "center" -justify "center" -state "hidden" -textvariable $variable
+	add_de1_button $contexts $action $x1 $y1 $x2 $y2
+}
+
+proc create_button_big_icon { contexts x1 y1 x2 y2 font backcolor textcolor action variable } {
+	rounded_rectangle $contexts  $x1 $y1 $x2 $y2 [rescale_x_skin 80] $backcolor
+	add_de1_variable "$contexts"  [expr ($x1 + $x2) / 2.0 ] [expr ($y1 + $y2) / 2.0 ] -width [rescale_x_skin [expr ($x2 - $x1) - 20]]  -text "" -font $::font_big_icon -fill [theme button_text_light] -anchor "center" -justify "center" -state "hidden" -textvariable $variable
+	add_de1_button $contexts $action $x1 $y1 $x2 $y2
+}
+
 proc update_button_color { button_id backcolor } {
 	.can itemconfigure "button_$button_id" -fill $backcolor
 }
