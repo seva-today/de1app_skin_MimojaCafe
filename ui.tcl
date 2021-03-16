@@ -65,10 +65,10 @@ create_button "settings_1" 80 1460 200 1580  $::font_big [theme button] [theme b
 create_button "settings_1" 220 1460 340 1580  $::font_big [theme button] [theme button_text_light] {iconik_save_profile 2} "2"
 create_button "settings_1" 360 1460 480 1580 $::font_big [theme button] [theme button_text_light] {iconik_save_profile 3}  "3"
 
-#if {$::iconik_settings(steam_presets_enabled) == 0} {
-	create_button "settings_1" 500 1460 620 1580 $::font_big [theme button] [theme button_text_light] {iconik_save_profile 4} "4" 
-#	create_button "settings_1" 640 1460 760 1580 $::font_big [theme button] [theme button_text_light] {iconik_save_profile 5} "5" 
-#}
+#  if {$::iconik_settings(steam_presets_enabled) == 0} {
+# 	create_button "settings_1" 500 1460 620 1580 $::font_big [theme button] [theme button_text_light] {iconik_save_profile 4} "4" 
+# 	create_button "settings_1" 640 1460 760 1580 $::font_big [theme button] [theme button_text_light] {iconik_save_profile 5} "5" 
+# }
 
 if {$::iconik_settings(cleanup_use_profile) == 1} {
 	create_button "settings_1" 780 1460 940 1580 $::font_big [theme button] [theme button_text_light] {iconik_save_cleaning_profile} "Clean"
