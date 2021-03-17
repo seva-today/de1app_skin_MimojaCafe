@@ -66,7 +66,7 @@ create_button "settings_1" 220 1460 340 1580  $::font_big [theme button] [theme 
 create_button "settings_1" 360 1460 480 1580 $::font_big [theme button] [theme button_text_light] {iconik_save_profile 3}  "3"
 
 #  if {$::iconik_settings(steam_presets_enabled) == 0} {
-# 	create_button "settings_1" 500 1460 620 1580 $::font_big [theme button] [theme button_text_light] {iconik_save_profile 4} "4" 
+ 	create_button "settings_1" 500 1460 620 1580 $::font_big [theme button] [theme button_text_light] {iconik_save_profile 4} "4" 
 # 	create_button "settings_1" 640 1460 760 1580 $::font_big [theme button] [theme button_text_light] {iconik_save_profile 5} "5" 
 # }
 
@@ -110,7 +110,7 @@ create_settings_button "off" $l_btn_left [expr {$l_btn_top + 1 * ($l_btn_height 
 	create_settings_button "off" $l_btn_left [expr {$l_btn_top + 5 * ($l_btn_height + $l_btn_spacer)}] [expr {$l_btn_left + $l_btn_width}] [expr {$l_btn_top + 5 * ($l_btn_height + $l_btn_spacer) + $l_btn_height}] $::font_tiny [theme button_secondary] [theme button_text_light] { set ::settings(grinder_dose_weight) [expr {$::settings(grinder_dose_weight) - 0.5}]; profile_has_changed_set; save_profile; save_settings_to_de1; save_settings} { set ::settings(grinder_dose_weight) [expr {$::settings(grinder_dose_weight) + 0.5}]; profile_has_changed_set; save_profile; save_settings_to_de1; save_settings} {Dose:\n $::settings(grinder_dose_weight) ([iconik_get_ratio_text])}
 #	if {$::iconik_settings(show_clock_on_main_page) == 1} {
 		## Show clock
-		create_button "off" 2100 $l_btn_top 2480 [expr {$l_btn_top + $l_btn_height}] $::font_tiny [theme button_secondary] [theme button_text_light] {set ::clocktime [clock seconds]} { [time_format $::clocktime 1]}
+		create_button "off" [expr 2560 - 50 - $l_btn_width] $l_btn_top [expr 2560 - 50] [expr {$l_btn_top + $l_btn_height}] $::font_tiny [theme button_secondary] [theme button_text_light] {set ::clocktime [clock seconds]} { [time_format $::clocktime 1]}
 #	} else {
 		create_settings_button "off" $l_btn_left [expr {$l_btn_top + 6 * ($l_btn_height + $l_btn_spacer)}] [expr {$l_btn_left + $l_btn_width}] [expr {$l_btn_top + 6 * ($l_btn_height + $l_btn_spacer) + $l_btn_height}] $::font_tiny [theme button_secondary] [theme button_text_light]  { set ::settings(grinder_setting) [round_to_one_digits [expr {$::settings(grinder_setting) - 0.1}]]; profile_has_changed_set; save_profile; save_settings_to_de1; save_settings} { set ::settings(grinder_setting) [round_to_one_digits [expr {$::settings(grinder_setting) + 0.1}]]; profile_has_changed_set; save_profile; save_settings_to_de1; save_settings} {Grinder Setting:\n $::settings(grinder_setting)}
 	# }
@@ -120,10 +120,10 @@ create_settings_button "off" $l_btn_left [expr {$l_btn_top + 1 * ($l_btn_height 
 # rounded_rectangle "off" 80 210 480 1110 [rescale_x_skin 80] [theme button]
 # add_de1_variable "off" [expr (80 + 480) / 2.0 ] [expr (240 + 240) / 2.0 ] -width [rescale_x_skin 380]  -text "" -font $::font_big -fill [theme button_text_light] -anchor "n" -justify "center" -state "hidden" -textvariable {[string range $::settings(profile_title) 0 28]}
 # add_de1_button "off" { say [translate "settings"] $::settings(sound_button_in); iconik_show_settings} 80 240 480 360
-create_button_transparent "off" 500 $l_btn_top 700 [expr {$l_btn_top + ($l_btn_height)*3}] $::font_tiny [theme button_secondary] [theme button_text_light] { say [translate "settings"] $::settings(sound_button_in); iconik_show_settings} {[string range $::settings(profile_title) 0 40]}
+create_button_transparent "off" 510 $l_btn_top 720 [expr {$l_btn_top + ($l_btn_height)*3}] $::font_tiny [theme button_secondary] [theme button_text_light] { say [translate "settings"] $::settings(sound_button_in); iconik_show_settings} {[string range $::settings(profile_title) 0 40]}
 
 ### TIME
-set column1_pos  900
+set column1_pos  910
 set column2_pos  [expr $column1_pos + 400]
 set column3_pos  [expr $column2_pos + 400]
 set pos_top 40
@@ -159,11 +159,11 @@ add_de1_variable "off" $column3_pos [expr {$pos_top + (3 * $spacer)}] -justify l
 
 # Presets
 
-set p_btn_vpos 1240
-set p_btn_hpos 580
+set p_btn_vpos 1225
+set p_btn_hpos 510
 set p_btn_width 440
 set p_btn_height 160
-set p_btn_spacer 50
+set p_btn_spacer 80
 
 ## Coffee
 create_button "off" [expr {0 * ($p_btn_spacer + $p_btn_width) + $p_btn_hpos}] $p_btn_vpos [expr {0 * ($p_btn_spacer + $p_btn_width) + $p_btn_hpos + $p_btn_width}] [expr {$p_btn_vpos + $p_btn_height}] $::font_tiny [theme button_coffee] [theme button_text_light] {iconik_toggle_profile 1} {[iconik_profile_title 1]}
@@ -184,8 +184,8 @@ create_button "off" [expr {2 * ($p_btn_spacer + $p_btn_width) + $p_btn_hpos}] $p
 
 ## Bottom buttons
 set b_btn_vpos 1440
-set b_btn_hpos 580
-set b_btn_hpos_r [expr 2560 - 80]
+set b_btn_hpos $p_btn_hpos
+set b_btn_hpos_r [expr 2560 - 50]
 set b_btn_width_big 440
 set b_btn_width_tiny 140
 set b_btn_height 140
@@ -235,8 +235,8 @@ if {$::iconik_settings(show_ghc_buttons) == 1} {
 ## Graph
 
 # 900 default
-set espresso_graph_height 900
-set espresso_graph_width 1880
+set espresso_graph_height 910
+set espresso_graph_width [expr 2560 - 510 - 50]
 
 if {$::iconik_settings(show_ghc_buttons) == 1} {
 	set espresso_graph_width 1540
@@ -246,7 +246,7 @@ if {$::iconik_settings(show_steam) == 1} {
 	set espresso_graph_height 600
 }
 
-add_de1_widget "off" graph 550 290 {
+add_de1_widget "off" graph 510 280 {
 
 	$widget element create line_espresso_pressure_goal -xdata espresso_elapsed -ydata espresso_pressure_goal -symbol none -label "" -linewidth [rescale_x_skin 8] -color [theme primary_light]  -smooth $::settings(live_graph_smoothing_technique) -pixels 0 -dashes {5 5};
 	$widget element create line2_espresso_pressure -xdata espresso_elapsed -ydata espresso_pressure -symbol none -label "" -linewidth [rescale_x_skin 12] -color [theme primary]  -smooth $::settings(live_graph_smoothing_technique) -pixels 0 -dashes $::settings(chart_dashes_pressure);
